@@ -1,0 +1,25 @@
+@import "../common.scss";
+
+$padding_header: 23px;
+
+.link {
+  &__box {
+    background: $primary;
+    padding: $padding_header;
+  }
+
+  &__item {
+    color: $header-text-color;
+    text-decoration: none;
+    padding: $padding_header;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__selected {
+    background: $primary--active;
+  }
+}
+
