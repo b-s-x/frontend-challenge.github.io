@@ -6,16 +6,7 @@ export const likes = createSlice({
     catLikes: {},
   },
   reducers: {
-    like: (state, action) => {
-      const catId = action.payload;
-      state.catLikes[catId] = true;
-    },
-    dislike: (state, action) => {
-      const catId = action.payload;
-      state.catLikes[catId] = false;
-    },
     toggle: (state, action) => {
-      console.log(action);
       const catId = action.payload;
       const current = !!state.catLikes[catId];
       state.catLikes[catId] = !current;
@@ -25,8 +16,9 @@ export const likes = createSlice({
 
 export const selectors = {
   likeIds: state => Object.keys(state.likes.catLikes).reduce((acc, catId) => {
-    if (!!state.likes.catLikes[catId]) return acc.concat(catId);
+    if (!!state.likes.catLikes[catId]) return [ ...acc, catId ]
 
     return acc;
   }, []),
 };
+
