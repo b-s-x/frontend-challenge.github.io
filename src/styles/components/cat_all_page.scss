@@ -5,3 +5,16 @@
   margin-top: 48px;
   gap: 48px
 }
+
+.no-favorite {
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+  }
+
+  &__cats {
+    font-size: 36px;
+  }
+}

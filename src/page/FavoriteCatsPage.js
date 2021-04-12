@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 
 import { CatCardList } from '../components/CatCardList'
@@ -15,7 +15,7 @@ export const FavoriteCatsPage = function FavoriteCatsPage() {
   const likeIds = useSelector(likeSelectors.likeIds);
   console.log('likes', likeIds);
 
-  const onDislike = React.useCallback((catId) => {
+  const onDislike = useCallback((catId) => {
     dispatch(likes.actions.toggle(catId));
   }, []);
 
@@ -27,12 +27,19 @@ export const FavoriteCatsPage = function FavoriteCatsPage() {
 
   return (
     <div>
-      <CatCardList
-        likeIds={likeIdsSet}
-        catImages={likedImages}
-        onFavorite={onDislike}
-      />
-
+      {
+        (likedImages.length)
+        ? <div>
+            <CatCardList
+              likeIds={likeIdsSet}
+              catImages={likedImages}
+              onFavorite={onDislike}
+            />
+          </div>
+        : <div className="no-favorite__container">
+            <div className="no-favorite__cats"> Нет любимых котиков? </div>
+          </div>
+      }
     </div>
   )
 }
